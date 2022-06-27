@@ -1,13 +1,16 @@
 version: '3'
 
 services:
-    jenkins:
-        image: jenkins/jenkins:lts
-        container_name: jenkins_cicd
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /mnt/hdd_0/jenkins:/var/jenkins_home
-        ports:
-            - "8080:8080"
-        privileged: true
-        user: root
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins_cicd
+    environment:
+      - TZ=Asia/Seoul
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/hdd_0/jenkins:/var/jenkins_home
+      - /home/coolseaweed/.ssh/jenkins:/var/jenkins_home/.ssh/
+    ports:
+      - "8080:8080"
+    privileged: true
+    user: root
